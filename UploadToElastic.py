@@ -20,6 +20,7 @@ class AppleElasticSearchHandler:
                   "mappings": {
                     "properties": {
                       "app_id": {"type": "keyword"},
+                      "run_id": {"type: integer"},
                       "type": {"type": "keyword"},
                       "href": {"type": "keyword"},
                       "app_version": {"type": "keyword"},
