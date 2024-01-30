@@ -4,6 +4,10 @@ from collections import defaultdict
 import argparse
 import urllib3
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class AppleElasticSearchHandler:
@@ -122,7 +126,9 @@ def main():
   
   #Input the username and password here
   username = "elastic"
-  password = "bUP6*TIJg+cpaVZyvQTu"
+  password = os.getenv('ELASTIC_PASSWORD')
+
+  print(password)
 
   # Initialize the AppleElasticSearchHandler
   print("Start")
