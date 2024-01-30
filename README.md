@@ -106,3 +106,18 @@ const client = new Client({
 Unless we want to set up replicas of our data, we should set the number of replicas to 0.
 
 However, down the line, we probably want to attach replicas
+
+## React Remix
+
+I think we should probably use React Remix as it will cleanly integrate loading of page content.
+
+It has this nice loader feature https://remix.run/docs/en/main/route/loader which will make it easy to integrate with elasticsearch backend
+
+We can create a page like privlabelobsv.org/app/app_id that will rout to always load the page for a given app_id and we can go further by making it privlabelobsv.org/app/app_id/run_id to show it at a given run and so on.
+
+
+Do this tutorial, but substitute
+
+https://remix.run/docs/en/main/start/tutorial#setup
+
+CSS ideas -- bootstraps 

@@ -100,15 +100,32 @@ app.post("/api/search/app_id", function (req, res) {
     });
     return;
 
+});
 
-    //app_id and run_id
-    run = 'run {$run_id}'
-    client.get(
-        {
-            app_id, //app_id should also be the _id in this case
-            run
-        }).then((r) => {
-            res.json(r);
-        });
+app.post("/api/get", function (req, res) {
 
+    var app_id = req.body.app_id;
+
+    if (app_id == undefined) {
+        res.json({ "Error": "app_id required" })
+        return;
+    }
+    
+    var run_id = req.body.run_id;
+
+    if (run_id == undefined) {
+        res.json({ "Error": "run_id required" })
+        return;
+    }
+    
+    client.get({
+        "id":app_id, 
+        "index":run_id,
+        "_source":true
+    }).then((r) => {
+        console.log(r);
+        res.json(r._source);
+    });
+
+    return;
 });

@@ -25,6 +25,7 @@ class AppleElasticSearchHandler:
                     "properties": {
                       "app_id": {"type": "keyword"},
                       "run_id": {"type: integer"},
+                      #run_date: 
                       "type": {"type": "keyword"},
                       "href": {"type": "keyword"},
                       "app_version": {"type": "keyword"},
@@ -129,12 +130,10 @@ def main():
   username = "elastic"
   password = os.getenv('ELASTIC_PASSWORD')
 
-  print(password)
-
   # Initialize the AppleElasticSearchHandler
   print("Start")
   for i in range(1,70):
-    apple_elastic_handler = AppleElasticSearchHandler(server_url, f'run{i}', username, password)
+    apple_elastic_handler = AppleElasticSearchHandler(server_url, "run_%05d"%i, username, password)
 
 
   # Create index with the specified mapping
@@ -142,7 +141,7 @@ def main():
 
   # Index Apple data (replace 'apple_data.json' with your actual file)
 
-    apple_elastic_handler.stream_and_update(f'./final/run{i}.json')
+    apple_elastic_handler.stream_and_update(f'./same_apps/sameApps{i}.json')
     print("Finished run " + str(i))
 
 
