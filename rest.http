@@ -3,6 +3,14 @@ Content-Type: application/json
 {
     "app_id": "1529135893"
 }
+
+HTTP/1.1 200  - OK
+x-powered-by: Express
+content-type: application/json; charset=utf-8
+content-length: 1100
+etag: W/"44c-oEuHQ/xXVPtCaecsFK2Jnq7oa+g"
+date: Sat, 03 Feb 2024 17:54:34 GMT
+connection: close
 ###
 POST http://localhost:3000/api/search/app_id
 Content-Type: application/json
@@ -11,6 +19,14 @@ Content-Type: application/json
     "size": 20,
     "app_id": "1529135893"
 }
+
+HTTP/1.1 200  - OK
+x-powered-by: Express
+content-type: application/json; charset=utf-8
+content-length: 1110
+etag: W/"456-quOufe7lKu4sn8O7OPvwN2NO2fk"
+date: Sat, 03 Feb 2024 17:55:16 GMT
+connection: close
 ###
 POST http://localhost:3000/api/runs 
 
@@ -33,7 +49,21 @@ Content-Type: application/json
 HTTP/1.1 200  - OK
 x-powered-by: Express
 content-type: application/json; charset=utf-8
-content-length: 929
-etag: W/"3a1-QQ6BBhpIgOJRs2PVRvdbegSlgVQ"
-date: Tue, 30 Jan 2024 20:05:43 GMT
+content-length: 930
+etag: W/"3a2-2SKfgmYO/oMaaVCenxOkhBQ9kmY"
+date: Sat, 03 Feb 2024 18:34:55 GMT
+connection: close
+###
+POST http://localhost:3000/api/search/app_name
+Content-Type: application/json
+{
+    "app_name": "sen"
+}
+
+HTTP/1.1 200  - OK
+x-powered-by: Express
+content-type: application/json; charset=utf-8
+content-length: 275
+etag: W/"113-sdayCykwuWnLoLwXd6qBZm40Lys"
+date: Sat, 03 Feb 2024 18:48:52 GMT
 connection: close

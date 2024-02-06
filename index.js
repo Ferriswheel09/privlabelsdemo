@@ -14,7 +14,8 @@ const client = new Client({
         username: process.env.ELASTIC_USERNAME,
         password: process.env.ELASTIC_PASSWORD
     },
-    caFingerprint: 'CA:AD:57:66:F4:7F:C3:E7:3F:23:04:10:0C:7E:90:D8:1C:31:BE:37:7B:89:02:94:31:C3:5C:E1:EA:5F:B1:11',
+    caFingerprint: process.env.FINGERPRINT, 
+    //'CA:AD:57:66:F4:7F:C3:E7:3F:23:04:10:0C:7E:90:D8:1C:31:BE:37:7B:89:02:94:31:C3:5C:E1:EA:5F:B1:11',
     tls: {
         rejectUnauthorized: false
     }
@@ -129,3 +130,44 @@ app.post("/api/get", function (req, res) {
 
     return;
 });
+
+
+
+//Methods that were just added
+
+//Search method that takes in a given string and performs matching on similar applications 
+//Prefix and Suffix
+app.post("/api/search/app_name", function (req, res){
+    var app_name = req.body.app_name
+
+    if (app_name == undefined){
+        res.json({ "Error": "app_id required" })
+        return;
+    }
+
+    client.search({
+        "index": "duplicateapp_run1",
+        "query": {
+            "wildcard": {
+                "app_name": {
+                    "value": "*" + app_name + "*",
+                    "case_insensitive": true
+                }
+            }
+        }
+    }).then((r) =>{
+        console.log(r.hits.hits)
+        var hits = []
+        for (i in r.hits.hits){
+            app_id = r.hits.hits[i]._source.app_id;
+            app_name = r.hits.hits[i]._source.app_name;
+            hits.push({
+                "app_id": app_id,
+                "app_name": app_name
+            })
+        }
+        res.json(hits);
+    })
+
+    return;
+})
