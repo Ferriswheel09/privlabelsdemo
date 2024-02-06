@@ -1,6 +1,7 @@
 //express
 const express = require("express");
 var bodyParser = require('body-parser')
+var testAPIRouter = require("./routes/testAPI")
 const app = express()
 const port = 3000;
 
@@ -21,7 +22,9 @@ const client = new Client({
     }
 });
 
-
+//TestAPI - this could be used when writing some more of the functions
+//Allows for us to separate methods by class
+app.use("/testAPI", testAPIRouter)
 
 //helloworld GET
 app.get('/', function (req, res) {
